@@ -137,7 +137,7 @@ echo "=========START creation de l'instance=======" 1>>trace.log 2>&1
 RETEC2CREATE=$($AWSBIN ec2 run-instances --image-id $IMGID --count 1 --instance-type $INSTANCETYP --key-name $SSHKEYUSED --security-group-ids $IDGRP --subnet-id $RETAWSVPCSUB1ID --user-data file://install.sh)
 #RETEC2CREATE=$($AWSBIN ec2 run-instances --image-id ami-00c08ad1a6ca8ca7c --count 1 --instance-type $INSTANCETYP --key-name tp1GB --security-group-ids $IDGRP --subnet-id $RETAWSVPCSUB1ID)
 echo $RETEC2CREATE 1>>trace.log 2>&1
-IDINSTANCE=$(echo -e "$AWSGRPSEC" |  jq '.Instances[].InstanceId' | tr -d '"')
+IDINSTANCE=$(echo -e "$RETEC2CREATE" |  jq '.Instances[].InstanceId' | tr -d '"')
 
 sleep 10
 # Récupérer l'adresse IP Publique de l'instance :
