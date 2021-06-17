@@ -1,11 +1,10 @@
 #!/bin/bash
 
-yum install https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm -y 1>>/tmp/trace.log 2>&1
 amazon-linux-extras install epel -y 1>>/tmp/trace.log 2>&1
 yum install httpd openssl php-common php-curl php-json php-mbstring php-mysql php-xml php-zip -y 1>>/tmp/trace.log 2>&1
 yum install mariadb-server -y 1>>/tmp/trace.log 2>&1
 #yum install mysql-community-server -y 1>>/tmp/trace.log 2>&1
-systemctl start mariadb.service 1>>/tmp/trace.log 2>&1
+systemctl start mysqld 1>>/tmp/trace.log 2>&1
 #MYSQLPWD=$(grep 'temporary password' /var/log/mysqld.log | awk -F"root@localhost: " '{print $2}' | awk 1 ORS='' 1>>/tmp/trace.log 2>&1)
 #echo $MYSQLPWD
 mysqladmin -u root create blog 1>>/tmp/trace.log 2>&1
